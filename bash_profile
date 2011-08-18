@@ -10,4 +10,4 @@ export CLICOLOR=1;
 
 export EDITOR='mvim -f'
 
-export PS1='\w # ';
+export PS1='\033[0;32m\w \033[1;31m# \033[1;37m';

@@ -2,6 +2,8 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
+autocmd VimEnter * :IndentGuidesEnable
+
 set background=dark 
 colorscheme ir_black 
 syntax on             " Syntax highlighting
@@ -16,9 +18,13 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_rvm')?rvm#statusline(
 
 call pathogen#runtime_append_all_bundles() 
 
-set expandtab
 set tabstop=2
 set shiftwidth=2
 set number
 
-filetype indent on
+set smartindent
+set cindent
+set smartindent
+set autoindent
+set expandtab
+

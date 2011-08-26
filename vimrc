@@ -1,4 +1,7 @@
-filetype off
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect. 
+set nocompatible
+
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -20,14 +23,17 @@ au BufNewFile,BufRead *.jst set filetype=html
 
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P 
 
-
-set tabstop=2
+set expandtab
 set shiftwidth=2
+set softtabstop=2
+
+
 set number
 
-set smartindent
-set cindent
-set smartindent
-set autoindent
-set expandtab
 
+
+filetype plugin indent on
+
+set history=50		" keep 50 lines of command line history
+set ruler		      " show the cursor position all the time
+set cursorline    " highlight the line that the cursor is on

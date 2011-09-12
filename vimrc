@@ -1,9 +1,13 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect. 
+" Use Vim settings, rather then Vi settings.
 set nocompatible
 
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+
+" let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+" let g:miniBufExplMapCTabSwitchBufs = 1 
+" let g:miniBufExplModSelTarget = 1
 
 autocmd VimEnter * :IndentGuidesEnable
 
@@ -29,8 +33,6 @@ set softtabstop=2
 
 
 set number
-
-
 
 filetype plugin indent on
 

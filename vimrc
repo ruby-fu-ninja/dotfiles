@@ -4,10 +4,10 @@ set nocompatible
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-" let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
-" let g:miniBufExplMapCTabSwitchBufs = 1 
-" let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 
 autocmd VimEnter * :IndentGuidesEnable
 
@@ -20,6 +20,9 @@ let mapleader = "["
 map <Leader>t :CommandT<CR>
 map <Leader>rt :CommandTFlush<CR>
 map <Leader>n :NERDTreeToggle<CR> " toggling for project tree window
+
+" Indent lines with only whitespace
+:inoremap <CR> <CR>x<BS>
 
 let g:NERDTreeWinSize = 50
 

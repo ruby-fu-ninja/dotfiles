@@ -39,6 +39,13 @@ set number
 
 filetype plugin indent on
 
+set autoindent
+
 set history=50		" keep 50 lines of command line history
 set ruler		      " show the cursor position all the time
 set cursorline    " highlight the line that the cursor is on
+
+nnoremap <silent> <C-Right> <c-w>l
+nnoremap <silent> <C-Left> <c-w>h
+nnoremap <silent> <C-Up> <c-w>k
+nnoremap <silent> <C-Down> <c-w>j

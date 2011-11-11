@@ -32,4 +32,4 @@ fi
 
 SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
 export SSH_AUTH_SOCK
-ssh-add ~/.ssh/id_dsa
+ssh-add ~/.ssh/id_rsa

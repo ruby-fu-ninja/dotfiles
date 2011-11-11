@@ -24,3 +24,12 @@ export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+if [ ! -d /tmp/501 ]; then
+echo "Starting ssh-agent" 
+mkdir /tmp/501
+ssh-agent -a /tmp/501/ssh-agent.socket
+fi
+
+SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
+export SSH_AUTH_SOCK
+ssh-add ~/.ssh/id_dsa

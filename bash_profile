@@ -21,7 +21,7 @@ export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
 ##
 
 # MacPorts Installer addition on 2011-08-29_at_16:24:01: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Users/hamish/src/depot_tools:/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 if [ ! -d /tmp/501 ]; then
@@ -33,3 +33,5 @@ fi
 SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
 export SSH_AUTH_SOCK
 ssh-add ~/.ssh/id_rsa
+
+

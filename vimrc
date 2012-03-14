@@ -57,4 +57,4 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set wildignore+=*.png,*.jpg,*.jpeg,*.sp*
+set wildignore+=*.png,*.jpg,*.jpeg,*.sp*,*.gif

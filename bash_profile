@@ -16,13 +16,11 @@ export GREP_OPTIONS='--color=auto';
 export PATH=$HOME/bin:$HOME/local/node/bin:$PATH
 export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
 
-##
-# Your previous /Users/hamish/.bash_profile file was backed up as /Users/hamish/.bash_profile.macports-saved_2011-08-29_at_16:24:01
-##
+export AWS_RDS_HOME='/Users/hamish/src/RDSCli-1.6.001';
+export JAVA_HOME='/Library/Java/Home';
 
-# MacPorts Installer addition on 2011-08-29_at_16:24:01: adding an appropriate PATH variable for use with MacPorts.
+
 export PATH=/Users/hamish/src/depot_tools:/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
 
 if [ ! -d /tmp/501 ]; then
 echo "Starting ssh-agent" 

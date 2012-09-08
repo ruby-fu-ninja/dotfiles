@@ -34,6 +34,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" Dont create swp and backups
+set noswapfile
+set nobackup
 
 set number
 
@@ -54,4 +57,4 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set wildignore+=*.png,*.jpg,*.jpeg
+set wildignore+=*.png,*.jpg,*.jpeg,*.sp*,*.gif

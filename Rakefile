@@ -7,27 +7,36 @@ task :install do
   Dir['*'].each do |file|
     next if %w[Rakefile README.rdoc LICENSE].include? file
     
-    if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
-      if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
-        puts "identical ~/.#{file.sub('.erb', '')}"
-      elsif replace_all
-        replace_file(file)
-      else
-        print "overwrite ~/.#{file.sub('.erb', '')}? [ynaq] "
-        case $stdin.gets.chomp
-        when 'a'
-          replace_all = true
-          replace_file(file)
-        when 'y'
-          replace_file(file)
-        when 'q'
-          exit
-        else
-          puts "skipping ~/.#{file.sub('.erb', '')}"
-        end
+    if (file =~ /\.zsh-theme/)
+      if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh/themes", file))
+        system %Q{rm -rf  "$HOME/.oh-my-zsh/themes/#{file}"}
+        link_file(file, "$HOME/.oh-my-zsh/themes")
+      else             
+        link_file(file, "$HOME/.oh-my-zsh/themes")
       end
-    else
-      link_file(file)
+    else 
+      if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
+        if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
+          puts "identical ~/.#{file.sub('.erb', '')}"
+        elsif replace_all
+          replace_file(file)
+        else
+          print "overwrite ~/.#{file.sub('.erb', '')}? [ynaq] "
+          case $stdin.gets.chomp
+          when 'a'
+            replace_all = true
+            replace_file(file)
+          when 'y'
+            replace_file(file)
+          when 'q'
+            exit
+          else
+            puts "skipping ~/.#{file.sub('.erb', '')}"
+          end
+        end
+      else
+        link_file(file)
+      end
     end
   end
 end
@@ -37,7 +46,7 @@ def replace_file(file)
   link_file(file)
 end
 
-def link_file(file)
+def link_file(file, dest=nil)
   if file =~ /.erb$/
     puts "generating ~/.#{file.sub('.erb', '')}"
     File.open(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"), 'w') do |new_file|
@@ -45,6 +54,10 @@ def link_file(file)
     end
   else
     puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    if dest
+      system %Q{ln -s "$PWD/#{file}" "#{dest}/#{file}"}
+    else
+      system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    end
   end
 end

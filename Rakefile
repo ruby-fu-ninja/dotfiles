@@ -4,9 +4,10 @@ require 'erb'
 desc "install the dot files into user's home directory"
 task :install do
   replace_all = false
+  
   Dir['*'].each do |file|
     next if %w[Rakefile README.rdoc LICENSE].include? file
-    
+     
     if (file =~ /\.zsh-theme/)
       if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh/themes", file))
         system %Q{rm -rf  "$HOME/.oh-my-zsh/themes/#{file}"}
@@ -15,7 +16,9 @@ task :install do
         link_file(file, "$HOME/.oh-my-zsh/themes")
       end
     else 
-      if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
+      if File.directory?(file)
+        link_dir(file) 
+      elsif File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
         if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
           puts "identical ~/.#{file.sub('.erb', '')}"
         elsif replace_all
@@ -44,6 +47,16 @@ end
 def replace_file(file)
   system %Q{rm -rf "$HOME/.#{file.sub('.erb', '')}"}
   link_file(file)
+end
+
+def link_dir(file, dest=nil)
+  if dest
+    puts %Q{ln -s "$PWD/#{file}" "#{dest}"}
+    system %Q{ln -s "$PWD/#{file}" "#{dest}"}
+  else
+    puts %Q{ln -s "$PWD/#{file}" "$HOME"}
+    system %Q{ln -s "$PWD/#{file}" "$HOME"}
+  end
 end
 
 def link_file(file, dest=nil)

@@ -2,7 +2,6 @@
 
 alias brake="bundle exec rake"
 
-
 export CLICOLOR=1;
 
 export EDITOR='vim'
@@ -20,5 +19,3 @@ fi
 SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
 export SSH_AUTH_SOCK
 ssh-add ~/.ssh/id_rsa
-
-

@@ -1,8 +1,18 @@
 " Use Vim settings, rather then Vi settings.
 set nocompatible
 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'https://github.com/wincent/command-t'
+Plugin 'git://github.com/scrooloose/nerdtree.git'
+Plugin 'git://github.com/nathanaelkane/vim-indent-guides.git'
+Plugin 'git://github.com/mileszs/ack.vim.git'
+Plugin 'git@github.com:kchmck/vim-coffee-script.git'
+
+call vundle#end()            " required
 
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 

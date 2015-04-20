@@ -36,3 +36,5 @@ source $ZSH/oh-my-zsh.sh
 # Finished adapting your PATH environment variable for use with MacPorts.
 export PATH=$HOME/bin:$HOME/local/node/bin:$PATH
 export PATH=/Users/hamish/src/depot_tools:/opt/local/bin:/opt/local/sbin:$PATH
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -1,7 +1,12 @@
 . ~/bin/bash_colors.sh
 source ~/bin/git-completion.bash
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # rvm
+
+# rbenv
+#export PATH="$HOME/.rbenv/bin:$PATH" 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# rbenv
 
 alias brake="bundle exec rake"
 
@@ -56,3 +61,5 @@ fi
 SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
 export SSH_AUTH_SOCK
 ssh-add ~/.ssh/id_rsa
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

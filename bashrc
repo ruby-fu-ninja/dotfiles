@@ -1,20 +1,19 @@
 . ~/bin/bash_colors.sh
 source ~/bin/git-completion.bash
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # rvm
-
 # rbenv
 #export PATH="$HOME/.rbenv/bin:$PATH" 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # rbenv
 
 alias brake="bundle exec rake"
+alias gpo="git push origin"
 
 export CLICOLOR=1;
 
 export EDITOR='vim'
 
-export PS1='\033[0;32m\w \033[1;31m# \033[1;37m';
+export PS1='\\[\033[0;32m\w \033[1;31m# \033[1;37m';
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS='--color=auto';
 
@@ -24,6 +23,13 @@ export HISTCONTROL=erasedups
 export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
+
+function latest_tag {
+  echo 'Fetching tags...'
+  git fetch --tags
+  TAG=(`git tag | sort -t. -k 1,1n -k 2,2n -k 3,3n`)
+  echo "Lastest tag is ${TAG[@]:(-1)}"
+}
 
 function minutes_since_last_commit {
   now=`date +%s`
@@ -62,4 +68,9 @@ SSH_AUTH_SOCK=/tmp/501/ssh-agent.socket
 export SSH_AUTH_SOCK
 ssh-add ~/.ssh/id_rsa
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+source ~/.profile
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # rvm
+
+complete -C aws_completer aws

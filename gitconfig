@@ -45,3 +45,9 @@
 
 [merge]
   tool = vimdiff
+[diff]
+	tool = vimdiff
+[branch]
+  autosetuprebase = always
+[commit]
+  template = ~/.gitmessage

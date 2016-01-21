@@ -1,0 +1,1 @@
+rvm all do gem update bundler

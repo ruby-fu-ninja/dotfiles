@@ -13,6 +13,13 @@ Plugin 'git://github.com/mileszs/ack.vim.git'
 Plugin 'git@github.com:kchmck/vim-coffee-script.git'
 Plugin 'git@github.com:t9md/vim-ruby-xmpfilter.git'
 Plugin 'https://github.com/Chiel92/vim-autoformat.git'
+Plugin 'git@github.com:tpope/vim-rails.git'
+
+" Snippets
+Plugin 'https://github.com/MarcWeber/vim-addon-mw-utils'
+Plugin 'https://github.com/tomtom/tlib_vim'
+Plugin 'https://github.com/garbas/vim-snipmate'
+Plugin 'https://github.com/honza/vim-snippets'
 
 call vundle#end()            " required
 
@@ -23,15 +30,35 @@ let g:miniBufExplModSelTarget = 1
 
 autocmd VimEnter * :IndentGuidesEnable
 
+" iTerm 256 colors
+set t_Co=256
 set background=dark 
 colorscheme ir_black
 syntax on             " Syntax highlighting
 
 let mapleader = "["
 
+" CommandT
 map <Leader>t :CommandT<CR>
 map <Leader>rt :CommandTFlush<CR>
+
+" In some terminals such as xterm the Escape key misbehaves, so Command-T
+" doesn't set up a mapping for it.
+if &term =~ "xterm" || &term =~ "screen"
+  let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+  
+  " fix up/down arrow sequences in console version
+  let g:CommandTSelectNextMap = ['<C-j>', '<ESC>OB']
+  let g:CommandTSelectPrevMap = ['<C-k>', '<ESC>OA']
+endif
+
+" NERDTree mappings
 map <Leader>n :NERDTreeToggle<CR> " toggling for project tree window
+map <Leader>f :NERDTreeFind<CR> " find current file in nerd tree
+
+" Show file path in status line
+set statusline+=%F
+set laststatus=2
 
 command Fixrubyhash :%s/:\([^ ]*\)\(\s*\)=>/\1:/g
 
@@ -42,8 +69,7 @@ let g:NERDTreeWinSize = 50
 
 au BufNewFile,BufRead *.jst set filetype=html
 
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P 
-
+" tabs
 set expandtab
 set shiftwidth=2
 set softtabstop=2

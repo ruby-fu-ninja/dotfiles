@@ -6,10 +6,15 @@ source ~/bin/git-completion.bash
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # rbenv
 
+
+# Add ~/bin to $PATH
+export PATH="~/bin:$PATH"
+
 alias brake="bundle exec rake"
 alias gpo="git push origin"
 
 export CLICOLOR=1;
+export TERM=xterm-256color;
 
 export EDITOR='vim'
 
